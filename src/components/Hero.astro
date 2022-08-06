@@ -2,26 +2,110 @@
     <div class="wrapper">
         <div class="content">
             <h1>אתר קטן יותר <br>מגניב יותר</h1>
-            <p>שיחה קצרה של 15 דקות, \n העברת תכנים ותמונות, כמה ימים ויש לכם אתר כזה! \n כזה פשוט!</p>
+            <p>
+                שיחה קצרה של 15 דקות,
+                <br>
+                העברת תכנים ותמונות, כמה ימים ויש לכם אתר.
+            </p>
             <button>להזמנה</button>
         </div>
-        <div class="hero-img"></div>
+        <div class="hero-img">
+            <img src="/img/hero-img.png" alt="">
+        </div>
     </div>
 </main>
 
 <style lang="scss">
+
+    @media screen and (min-width: 48em) {
+        .wrapper {
+            display: flex;
+            flex-flow: row;
+            margin-right: 4em;
+        }
+
+        .hero-img {
+            width: 55%;
+        }
+    }
+
+    @media screen and (min-width: 60em) {
+        .wrapper {
+            margin-right: 10em;
+        }
+    }
+
+
     main {
         background: var(--hero-linear);
         color: var(--color-text-white);
-        // margin-top: -100px;
-    }
-
-    h1 {
-        margin: 0;
-        font-size: 4rem;
+        margin-top: -60px;
+        padding-top: 100px;
     }
 
     .wrapper {
-        margin-inline: 10em;
+        display: flex;
+        // flex-flow: row;
+        flex-flow: column;
+        align-items: center;
+        // margin-left: 5em;
+        padding-bottom: 4em;
+        > * {
+            text-align: center;
+        }
     }
+
+    .content {
+        flex: 1;
+        width: 45%;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    button {
+        padding-inline: 2.875em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        color: #fff;
+        background-color: #17181A;
+        font-weight: bold;
+        font-size: 20px;
+        box-shadow: -4px 4px 0 var(--red-shade-1);
+        border: none;
+        cursor: pointer;
+        transition: all 250ms cubic-bezier(0.23, 1, 0.320, 1);
+        &:hover {
+            transform: perspective(400px) rotateY(18deg) rotateX(9deg);
+            transition: all 250ms ease-out;
+            box-shadow: -6px 6px 0 var(--red-shade-2);
+        }
+    }
+
+    .hero-img {
+        // flex: 1;
+        // max-width: 800px;
+        // width: 55%;
+    }
+
+    img { 
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        // object-position: center -10px;
+    }
+
+    h1 {
+        font-family: "Tahoma";
+        margin-bottom: 0;
+		font-size: clamp(2.44rem, 2.28vw + 1.85rem, 3.75rem); 
+    }
+
+    p {
+        line-height: 32px;
+        color: var(--color-off-white);
+    }
+
+
 </style>

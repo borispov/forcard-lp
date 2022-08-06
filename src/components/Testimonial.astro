@@ -1,0 +1,97 @@
+<section>
+    <div class="testimonial">
+        <h1>
+            "משהו קטן ונוח, בדיוק מה שהייתי צריך להראות ללקוחות מתעניינים."
+        </h1>
+
+        <div class="author-box">
+            <img src="/img/testi-avatar.jpg" alt="Avatar of testimonial person">
+            <p class="author-name">אדיטה פלורי</p>
+            <p class="author-occupation">צלמת ניובורן</p>
+        </div>
+    </div>
+</section>
+
+
+<style lang="scss">
+
+    .testimonial {
+        position: relative;
+        padding: 2em;
+        background-color: var(--red-shade-4);
+
+        margin-top: 50px;
+        margin-bottom: 50px;
+        
+
+        max-width: 50em;
+        margin-inline: 1em;
+        border-radius: 12px;
+
+        @media screen and (min-width: 768px) {
+            margin-inline: auto;
+        }
+
+        h1 {
+            font-size: var(--font-size-lg);
+            color: #0E0E26;
+            line-height: 130%;
+            letter-spacing: 0.5px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+    }
+
+    .testimonial:before {
+        position: absolute;
+        content: "";
+        right: 5px;
+        width: 100%;
+        height: 100%;
+        top: 5px;
+        background-color: transparent;
+        border: 1px solid var(--red-primary);
+        border-radius: 12px;
+    }
+
+    .author-box {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+
+        margin: 0 auto;
+        padding: 0 10px;
+
+        width: 260px;
+
+        border-radius: 12px;
+
+        color: hsl(10, 10%, 5%);
+        background: #F7E0E0;
+
+        border-top-width: 1px;
+        border-bottom-width: 1px;
+        border-left-width: 0.5px;
+        border-right-width: 0.5px;
+        border-color: #000;
+        border-style: solid;
+        box-shadow: -4px 4px 0 hsl(0, 0%, 10%);
+
+        img {
+            border-radius: 50%;
+        }
+
+        .author-name {
+            font-size: 18px;
+        }
+
+        .author-occupation {
+            font-size: 12px;
+        }
+
+    }
+
+
+
+</style>

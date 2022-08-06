@@ -1,0 +1,195 @@
+<section id="pricing">
+    <h1>מחירון</h1>
+
+    <div class="pricing-layout">
+        <div class="pricing pricing-1">
+            <h2>בסיס</h2>
+            <div class="price">
+                <span class="price-num">30₪</span>
+                /חודש
+            </div>
+
+            <ul>
+                <li>
+                    <span>&#10003;</span>
+                    אחסון ותחזוקה
+                </li>
+                <li>
+                    <span>&#10003;</span>
+                    דומיין forcard.co.il/your-name
+                </li>
+                <li>
+                    <span>&#10003;</span>
+                    עיצוב בהתאמה
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="pricing pricing-2">
+            <span class="badge">הכי פופולרי</span>
+            <h2>פרימיום</h2>
+            <div class="price">
+                <span class="price-num">50₪</span>
+                /חודש
+            </div>
+
+            <ul>
+                <li>
+                    <span>&#10003;</span>
+                    כל מה שבהתחלתי
+                </li>
+                <li>
+                    <span>&#10003;</span>
+                    רענון עיצוב עד 3 פעמים בשנה
+                </li>
+                <li>
+                    <span>&#10003;</span>
+                    דומיין forcard.co.il/your-name
+                </li>
+                <li>
+                    <span>&#10003;</span>
+                    עיצוב בהתאמה
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="pricing pricing-3">
+            <h2>מתקדם</h2>
+            <div class="price">
+                <span class="price-num">100₪</span>
+                /חודש
+            </div>
+
+            <ul>
+                <li>
+                    <span>&#10003;</span>
+                    אחסון ותחזוקה
+                </li>
+                <li>
+                    <span>&#10003;</span>
+                    דומיין forcard.co.il/your-name
+                </li>
+                <li>
+                    <span>&#10003;</span>
+                    עיצוב בהתאמה
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<style lang="scss">
+
+    section {
+        padding: 0 1em;
+        @media screen and (min-width: 768px) {
+            padding: 3em 10em;
+        }
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 60px;
+        text-decoration: underline;
+        font-family: 'Tahoma';
+    }
+
+    .pricing-layout {
+        margin-inline: auto;
+        display: flex;
+        flex-flow: column;
+        padding: 2em 0;
+        gap: 2em;
+
+        @media screen and (min-width: 768px) {
+            flex-flow: row;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .pricing {
+        padding: 10px 2em;
+        color: var(--color-text-black);
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        border-radius: 16px;
+        box-shadow: -6px 6px 0 #652113;
+        border: 1px solid #000;
+    }
+
+    .pricing-1 {
+        background-color: #F3E1DE;
+    }
+
+    .pricing-2 {
+        background: linear-gradient(99.43deg, #D67765 2.37%, #C54126 100%);
+        color: var(--color-text-white);
+
+
+        .badge {
+            background-color: #FCCD86;
+            color: white;
+            margin-top: 8px;
+            padding: 0.5em 1em;
+            border-radius: 12px;
+            color: var(--color-text-black);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        border: none;
+
+        @media screen and (min-width: 768px) {
+            flex-flow: row;
+            margin-top: -30px;
+            margin-bottom: -30px;
+        }
+
+    }
+
+    .pricing-3 {
+
+    }
+
+    .price {
+        margin-bottom: 16px;
+        font-weight: 400;
+        font-size: 30px;
+        &-num {
+            font-weight: bold;
+            font-size: 50px;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    ul li {
+        font-size: 18px;
+        margin-bottom: 16px;
+        line-height: 24px;
+    }
+
+    ul li span {
+        padding-left: 10px;
+    }
+
+    .badge {
+        /* background-color: #FCCD86;
+        color: white;
+        padding: 0.5em 1em;
+        font-size: 14px; */
+    }
+
+
+</style>

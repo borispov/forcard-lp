@@ -1,37 +1,63 @@
 <header>
-
+    <div class="burger">&#9776;</div>
     <nav>
-        <a href="#pricing">מחירון</a>
-        <a href="#contact">צור קשר</a>
+        <ul>
+            <li>
+                <a href="#pricing">מחירון</a>
+            </li>
+            <li>
+                <a href="#contact">צור קשר</a>
+            </li>
+        </ul>
     </nav>
-
-    <h1>forcard.</h1>
+    <img src="/img/logo.svg" alt="forcard logo" aria-role="logo">
 </header>
 
 
 <style lang="scss">
+
     header {
-        // height: 120px;
+        height: 60px;
         background-color: transparent;
         display: flex;
         flex-flow: row;
         justify-content: space-between;
         align-items: center;
-        padding-inline: 10em;
-        opacity: 0.9;
         position: relative;
+        padding: 1em;
+
     }
 
-    h1 {
-        // margin: 0;
-        // padding: 0;
-        font-size: 3rem;
-        font-size: 1rem;
+    .burger { color: white; font-size: 26px;}
+
+    nav {
+        position: absolute;
+        text-align: right;
+        top: 100%;
+        left: 0;
+        background: inherit;
+        width: 100%;
+        transform: scale(1, 0);
+        transform-origin: top;
+        transition: all 400ms ease-in-out;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
     }
 
-    nav > a {
-        text-decoration: none;
-        color: var(--color-text);
-        padding-left: 10em;
-    }
 </style>
+
+<script>
+    const menuButton = document.querySelector('.burger');
+    const header = document.querySelector('header');
+    const menu = document.querySelector('nav')
+
+    document.addEventListener('click', function() {
+        header.classList.toggle('header-open')
+        menu.classList.toggle('menu-open')
+    })
+</script>
