@@ -9,20 +9,21 @@
 זה לא תמונה, זה לא רק עיצוב, זה לא רק כרטיס דיגיטלי, זה אתר לכל דבר ועניין.
             </p>
             <ul>
-                <li>אפשר להשתמש בו לדף העסקי בגוגל</li>
-                <li>אפשר להוסיף אותו בדף בפייסבוק</li>
-                <li>אפשר לשתף אותו ללקוח מתעניין בוואטסאפ</li>
-                <li>אפשר לשים אותו ב bio באינטסגרם</li>
+                <li>&#10003; אפשר להשתמש בו לדף העסקי בגוגל</li>
+                <li>&#10003; אפשר להוסיף אותו בדף בפייסבוק</li>
+                <li>&#10003; אפשר לשתף אותו ללקוח מתעניין בוואטסאפ</li>
+                <li>&#10003; אפשר לשים אותו ב bio באינטסגרם</li>
             </ul>
         </div>
         <div class="img">
-            <img src="/img/hero-img.jpg" alt="">
+            <img src="/img/feature-1.png" alt="">
         </div>
     </div>
 
     <div class="feature feature-2">
-        <div class="img">
-            <img src="/img/hero-img.jpg" alt="">
+        <div class="image">
+            <div class="overlay"></div>
+            <img src="/img/feature-2.jpg" alt="">
         </div>
 
         <div class="content">
@@ -43,16 +44,21 @@
 </section>
 
 
-<style>
+<style lang="scss">
 
     .feature {
         display: flex;
         flex-flow: column;
         padding: 1em 2em;
+        text-align: justify;
 
         @media screen and (min-width:768px) {
             flex-flow: row;
             padding: 3em 10em;
+            text-align: right;
+            justify-content: center;
+            // margin-left: auto;
+            // margin-right: auto;
         }
     }
 
@@ -64,6 +70,26 @@
         color: #fff;
         background: linear-gradient(107.97deg, #CC5C44 0%, #DE9284 100%);
         gap: 24px;
+
+        .image {
+            border-radius: 16px;
+            box-shadow: -12px 12px 0 #45170D;
+            position: relative;
+            .overlay {
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background-color: hsla(0, 56%, 52%, 0.2);
+            }
+
+            img {
+            border-radius: 16px;
+                width: 100%;
+                height: 100%;
+            }
+        }
     }
 
     section {
@@ -74,6 +100,11 @@
         max-width: 65ch;
         line-height: 30px;
 
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
     }
 
 </style>

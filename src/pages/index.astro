@@ -5,6 +5,8 @@ import Hero from "../components/Hero.astro";
 import Testimonial from "../components/Testimonial.astro";
 import Features from "../components/Features.astro";
 import Pricing from "../components/Pricing.astro";
+import Form from "../components/Form.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -13,6 +15,8 @@ import Pricing from "../components/Pricing.astro";
 	<Testimonial />
 	<Features />
 	<Pricing />
+	<Form client:visible />
+	<Footer />
 </Layout>
 
 <style>

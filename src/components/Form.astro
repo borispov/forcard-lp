@@ -1,0 +1,368 @@
+---
+const submitMsg = '';
+---
+<section class="form-section">
+    <canvas class="js-draw"></canvas>
+    <h1>להזמנה או לקבלת פרטים נוספים</h1>
+    <div class="e"></div>
+    <form 
+        id="contact"
+        name="contact"
+        action="">
+        
+        <div class="field">
+            <label for="full-name">שם מלא</label>
+            <input 
+                required
+                type="text" 
+                name="full-name" 
+                aria-placeholder="דנה וייסברג">
+        </div>
+
+        <div class="field">
+            <label for="phone">טלפון</label>
+            <input 
+                required
+                type="tel" 
+                maxlength="12"
+                minlength="8"
+                name="phone" 
+                aria-placeholder="מס׳ נייד">
+        </div>
+
+        <div class="field field-note">
+            <label for="note">במה אתם מעוניינים?</label>
+            <input 
+                required
+                type="text" 
+                name="note" 
+            >
+        </div>
+
+
+
+        <button 
+            id="contact-submit-btn"
+            data-testid="contact-submit-btn"
+            type="submit">
+                שלח
+        </button>
+
+    </form>
+</section>
+
+<style>
+
+
+    canvas {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 0;
+        opacity: 0.3;
+    }
+
+    section {
+        padding: 5em 4em;
+        position: relative;
+        overflow: hidden;
+        background: var(--color-text-black);
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        flex: 1;
+    }
+
+    .field-note {
+        flex-basis: 100%;
+    }
+
+    form {
+        position: relative;
+        z-index: 1;
+        font-family: 'Tahoma';
+        display: flex;
+        flex-flow: row wrap;
+        gap: 16px;
+        row-gap: 0px;
+        padding: 4em 2em;
+        color: white;
+        max-width: 40em;
+        margin-inline: auto;
+        /* max-width: 40em; */
+        @media screen and (min-width: 40em) {
+            padding: 4em 10em;
+        }
+    }
+
+    h1 {
+        color: #f9f9f9;
+        z-index: 1;
+        position: relative;
+        font-size: 50px;
+        font-family: Tahoma;
+        text-align: center;
+    }
+
+    label {
+        margin-bottom: 10px;
+        font-family: "Heebo";
+        font-weight: 700;
+        color: #d9d9d9;
+    }
+
+    input {
+        margin-bottom: 16px;
+        line-height: 150%;
+        background: var(--color-off-white);
+        color: #111;
+        padding: 1em 2em;
+        border-radius: 8px;
+    }
+
+    button {
+        padding: 10px 30px;
+        font-size: 20px;
+        border-radius: 8px;
+        width: 100%;
+        font-weight: bold;
+        color: var(--color-off-white);
+        color: black;
+        border: none;
+        background: var(--red-shade-1);
+        transition: all 150ms ease-in-out;
+        &:hover {
+            background: var(--red-shade-4);
+        }
+    }
+
+    .e {
+        z-index: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 320px;
+        height: 320px;
+        clip-path: circle();
+        opacity: 1;
+        transform: translateX(-60%) translateY(5%);
+        overflow: hidden;
+        background-color: var(--red-primary);
+        border: 2px solid var(--red-shade-2);
+        border-radius: 50%;
+    }
+
+
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+<script>
+const TAU = Math.PI * 2;
+
+const canvas = document.querySelector('.js-draw');
+
+class Stage {
+  constructor(canvas, width, height) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+
+    this.width = width;
+    this.height = height;
+
+    this.options = {
+      rotation: Math.atan2(width, height) + Math.PI / 2,
+      backgroundColor: '#011627',
+      lineColor: '#FDFFFC',
+      pointColor1: '#41EAD4',
+      pointColor2: '#F71735',
+    };
+
+    this.points = [];
+
+    this.line = { from: { x: 0, y: height * 0.5 }, to: { x: width, y: height * 0.5 } };
+
+    this.animation = null;
+  }
+
+  get rotation() {
+    return this.options.rotation;
+  }
+
+  get width() {
+    return this.canvas.width;
+  }
+
+  get height() {
+    return this.canvas.height;
+  }
+
+  get hypo() {
+    return Math.hypot(this.width, this.height);
+  }
+
+  get widthHalf() {
+    return this.width * 0.5;
+  }
+
+  get heightHalf() {
+    return this.height * 0.5;
+  }
+
+  set width(w) {
+    this.canvas.width = w;
+  }
+
+  set height(h) {
+    this.canvas.height = h;
+  }
+
+  init() {
+    this.generate();
+
+  }
+
+  generate() {
+    this.points = new Array(100).fill().map((_, i) => {
+      const r = (this.heightHalf * 0.5) + Math.random() * (this.heightHalf / 2);
+      const c = i % 2 === 0 ? this.options.pointColor1 : this.options.pointColor2;
+
+      const point = {
+        r,
+        a: Math.random() * TAU,
+        s: 0.0005 + (Math.random() * 0.0008),
+        c,
+      };
+
+      return point;
+    });
+  }
+
+  setSize(w, h) {
+    this.width = w;
+    this.height = h;
+  }
+
+
+  animate() {
+    const diff = -Math.PI + (Math.random() * TAU);
+    const angle = this.rotation + diff;
+
+    this.animation = anime({
+      targets: this.options,
+      duration: 3000,
+      delay: 3000,
+      rotation: angle,
+      easing: 'easeInOutSine',
+      complete: () => {
+        this.animate();
+      },
+    });
+  }
+
+  drawLine(from, to, color, width = 1) {
+    this.ctx.strokeStyle = color;
+
+    this.ctx.beginPath();
+    this.ctx.lineWidth = width;
+    this.ctx.moveTo(from.x, from.y);
+    this.ctx.lineTo(to.x, to.y);
+    this.ctx.stroke();
+    this.ctx.closePath();
+  }
+
+  drawPoint(point) {
+    const { from, to } = this.line;
+    const wh = this.canvas.width * 0.5;
+    const hh = this.canvas.height * 0.5;
+
+    point.a += point.s;
+    point.x = wh + (Math.cos(point.a) * point.r);
+    point.y = hh + (Math.sin(point.a) * point.r);
+
+    const denominator = Math.hypot(to.x - from.x, to.y - from.y);
+    const numerator = ((to.y - from.y) * point.x) - ((to.x - from.x) * point.y) + (to.x * from.y) - (to.y * from.x);
+    const distance = numerator / denominator;
+
+    const pointAngle = Math.atan2(to.y - from.y, to.x - from.x) + (Math.PI / 2);
+    const pointRadius = 0.5 + Math.abs(distance / this.heightHalf) * 3;
+    const lineWidth = 0.5 + (Math.abs(distance / this.heightHalf) - 0.5);
+
+    const toX = point.x + (Math.cos(pointAngle) * distance);
+    const toY = point.y + (Math.sin(pointAngle) * distance);
+
+    this.ctx.save();
+    this.ctx.globalAlpha = point.o;
+    this.drawLine(point, { x: toX, y: toY }, this.options.lineColor, lineWidth);
+    this.ctx.restore();
+
+    this.ctx.beginPath();
+    this.ctx.fillStyle = point.c;
+    this.ctx.arc(point.x, point.y, pointRadius, 0, TAU);
+    this.ctx.fill();
+    this.ctx.closePath();
+  };
+
+  updateSeparator() {
+    this.line.from.x = this.widthHalf + (Math.cos(this.rotation) * this.width);
+    this.line.from.y = this.heightHalf + (Math.sin(this.rotation) * this.width);
+    this.line.to.x = this.widthHalf + (Math.cos(this.rotation + Math.PI) * this.width);
+    this.line.to.y = this.heightHalf + (Math.sin(this.rotation + Math.PI) * this.width);
+  }
+
+  run() {
+    this.ctx.globalCompositeOperation = 'source-over';
+    this.ctx.fillStyle = this.options.backgroundColor;
+    this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+    this.updateSeparator();
+
+    this.points.forEach((p, i) => this.drawPoint(p, i));
+
+    this.ctx.save();
+    this.ctx.translate(this.widthHalf, this.heightHalf);
+    this.ctx.rotate(this.rotation);
+    this.ctx.globalCompositeOperation = 'difference';
+    this.ctx.fillStyle = this.options.lineColor;
+    this.ctx.fillRect(-this.hypo / 2, 0, this.hypo, this.hypo);
+    this.ctx.restore();
+
+    const circleRadius = 10;
+    this.ctx.beginPath();
+    this.ctx.fillStyle = '#fce9d5';
+    this.ctx.arc(this.widthHalf, this.heightHalf, circleRadius, 0, TAU);
+    this.ctx.fill();
+    this.ctx.closePath();
+
+    const circleRadiusInner = circleRadius * 0.5;
+    this.ctx.beginPath();
+    this.ctx.fillStyle = this.options.backgroundColor;
+    this.ctx.arc(this.widthHalf, this.heightHalf, circleRadiusInner, 0, TAU);
+    this.ctx.fill();
+    this.ctx.closePath();
+
+    requestAnimationFrame(() => this.run());
+  }
+}
+
+const formSection = document.querySelector('.form-section');
+const stage = new Stage(canvas, formSection.offsetWidth, formSection.offsetHeight);
+
+stage.init();
+stage.run();
+
+
+window.addEventListener('resize', () => {
+    const formSection = document.querySelector('.form-section');
+
+  stage.setSize(formSection.offsetWidth, formSection.offsetHeight);
+  stage.generate();
+});
+
+</script>
