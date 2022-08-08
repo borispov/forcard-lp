@@ -1,16 +1,60 @@
 ---
-// <!-- action="/.netlify/functions/form"> -->
-const submitMsg = '';
+// @ts-ignore
+import XElement from 'astro-xelement';
+const { Form } = XElement;
+const { request } = Astro;
+
+let data: Record<string, unknown>;
+
+function processFormData(submittedData: Record<string, unknown>) {
+  return {
+    ...submittedData,
+    name: (submittedData.name as string)?.toLowerCase(),
+    phone: (submittedData.phone as string),
+    note: (submittedData.note as string),
+  }
+}
+
+if (request.method === 'POST') {
+	if (request.headers.get('Content-Type') === 'application/json') {
+		const submittedData = await request.json();
+		data = processFormData(submittedData);
+		return new Response(JSON.stringify(data), { status: 200 });
+	} else if (request.headers.get('Content-Type') === 'application/x-www-form-urlencoded') {
+		const submittedData = Object.fromEntries(await request.formData());
+		data = processFormData(submittedData);
+	}
+}
+
+const handleFormSubmit = async (e: SubmitEvent) => {
+	e.preventDefault();
+	const formData = Object.fromEntries(new FormData(e.currentTarget as HTMLFormElement));
+	const returnedResponse = await fetch('/', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(formData)
+	});
+	if (returnedResponse.ok) {
+		const processedData = await returnedResponse.json();
+		// do something with the data
+		document.querySelector('output > pre').textContent = JSON.stringify(processedData, null, 2);
+	} else {
+		console.error(returnedResponse.statusText);
+	}
+}
+
+
 ---
 <section class="form-section">
     <canvas class="js-draw"></canvas>
     <h1>להזמנה או לקבלת פרטים נוספים</h1>
     <div class="e"></div>
-    <form 
-        id="contact"
-        name="contact"
-        netlify
-        >
+    <Form 
+      method='post'
+      @submit={handleFormSubmit}
+      id="contact"
+      name="contact"
+    >
         
         <div class="field">
             <label for="name">שם מלא</label>
@@ -50,7 +94,11 @@ const submitMsg = '';
                 שלח
         </button>
 
-    </form>
+    </Form>
+
+    <output>
+      <pre>{data && JSON.stringify(data, null, 2)}</pre>
+    </output>
 </section>
 
 <style>

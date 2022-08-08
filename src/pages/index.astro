@@ -5,8 +5,30 @@ import Hero from "../components/Hero.astro";
 import Testimonial from "../components/Testimonial.astro";
 import Features from "../components/Features.astro";
 import Pricing from "../components/Pricing.astro";
-import Form from "../components/Form.astro";
+
 import Footer from "../components/Footer.astro";
+
+// @ts-ignore
+import XElement from 'astro-xelement';
+const { Form } = XElement;
+
+// form logic
+const handleFormSubmit = async (e: SubmitEvent) => {
+	e.preventDefault();
+	const formData = Object.fromEntries(new FormData(e.currentTarget as HTMLFormElement));
+	const returnedResponse = await fetch('/api/useForm', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(formData)
+	});
+	if (returnedResponse.ok) {
+		return Astro.redirect("/thanks");
+	} else {
+		console.error(returnedResponse.statusText);
+	}
+}
+
+
 ---
 
 <Layout title="Welcome to Astro.">
@@ -15,10 +37,144 @@ import Footer from "../components/Footer.astro";
 	<Testimonial />
 	<Features />
 	<Pricing />
-	<Form />
+
+	<section class="form-section">
+		<canvas class="js-draw"></canvas>
+		<h1>להזמנה או לקבלת פרטים נוספים</h1>
+		<div class="e"></div>
+
+		<Form method='post' @submit={handleFormSubmit} class="form-section">
+			<div class="field">
+				<label for="name">שם מלא</label>
+				<input required type="text" name="name" aria-placeholder="דנה וייסברג">
+			</div>
+
+			<div class="field">
+				<label for="phone">טלפון</label>
+				<input required type="tel" maxlength="12" minlength="8" name="phone" aria-placeholder="מס׳ נייד">
+			</div>
+
+			<div class="field field-note">
+				<label for="note">במה אתם מעוניינים?</label>
+				<input required type="text" name="note">
+			</div>
+
+
+
+			<button id="contact-submit-btn" data-testid="contact-submit-btn" type="submit">
+				שלח
+			</button>
+		</Form>
+	</section>
+
 	<Footer />
 </Layout>
 
-<style>
-</style>
+<script is:inline type="module" src="/formAnimations.js"></script>
 
+<style>
+	canvas {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		z-index: 0;
+		opacity: 0.3;
+	}
+
+	section {
+		padding: 5em 4em;
+		position: relative;
+		overflow: hidden;
+		background: var(--color-text-black);
+	}
+
+	.field {
+		display: flex;
+		flex-direction: column;
+		width: 50%;
+		flex: 1;
+	}
+
+	.field-note {
+		flex-basis: 100%;
+	}
+
+	form {
+		position: relative;
+		z-index: 1;
+		font-family: 'Tahoma';
+		display: flex;
+		flex-flow: row wrap;
+		gap: 16px;
+		row-gap: 0px;
+		padding: 4em 2em;
+		color: white;
+		max-width: 40em;
+		margin-inline: auto;
+
+		/* max-width: 40em; */
+		@media screen and (min-width: 40em) {
+			padding: 4em 10em;
+		}
+	}
+
+	h1 {
+		color: #f9f9f9;
+		z-index: 1;
+		position: relative;
+		font-size: 50px;
+		font-family: Tahoma;
+		text-align: center;
+	}
+
+	label {
+		margin-bottom: 10px;
+		font-family: "Heebo";
+		font-weight: 700;
+		color: #d9d9d9;
+	}
+
+	input {
+		margin-bottom: 16px;
+		line-height: 150%;
+		background: var(--color-off-white);
+		color: #111;
+		padding: 1em 2em;
+		border-radius: 8px;
+	}
+
+	button {
+		padding: 10px 30px;
+		font-size: 20px;
+		border-radius: 8px;
+		width: 100%;
+		font-weight: bold;
+		color: var(--color-off-white);
+		color: black;
+		border: none;
+		background: var(--red-shade-1);
+		transition: all 150ms ease-in-out;
+
+		&:hover {
+			background: var(--red-shade-4);
+		}
+	}
+
+	.e {
+		z-index: 0;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 320px;
+		height: 320px;
+		clip-path: circle();
+		opacity: 1;
+		transform: translateX(-60%) translateY(5%);
+		overflow: hidden;
+		background-color: var(--red-primary);
+		border: 2px solid var(--red-shade-2);
+		border-radius: 50%;
+	}
+</style>

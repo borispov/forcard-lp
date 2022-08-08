@@ -1,0 +1,147 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const message = "הטופס נשלח בהצלחה. אנו נחזור אליכם בהקדם. בדרך-כלל תוך 48 שעות"
+const instructions = "במידה והינכם מעוניינים להקים מיקרו-דף-נחיתה (כרטיס דיגיטלי) אנא, דאגו לאסוף את כל החומרים כדי שתוכלו להעביר לנו."
+
+const materials = [
+    "לוגו",
+    "תמונות",
+    "תוכן: אודות, תיאור השירות, תיאור התהליך וכד׳",
+    "כל דבר נוסף שחשוב לכם שיופיע",
+    "קישורים לדפים שלכם ברשתות החברתיות",
+    "פרטי יצירת קשר: כפתור וואטאאפ, כפתור לחיוג, כפתור שמירת איש קשר",
+    "אילו צבעים מייצגים אתכם ואת העסק שלכם?",
+]
+---
+
+<Layout title="תודה רבה">
+    <header>
+        <img src="/img/logo.svg" alt="forcard logo" aria-role="logo">
+    </header>
+    <main>
+        <div class="wrapper">
+            <h1>תודה רבה!</h1>
+            <h2>{message}</h2>
+            <p>{instructions}</p>
+            <div class="list-wrapper">
+                <h3>מה צריך להביא?</h3>
+                <ul>
+                    {
+                        materials.map(item => (
+                            <li>{item}</li>
+                        ))
+                    }
+                </ul>
+            </div>
+
+            <div class="contact">
+                <p>יש שאלות?</p>
+                <a href="https://wa.me/+972508564794">שלח/י וואטסאפ</a>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style lang="scss">
+    header {
+        background: var(--red-primary);
+        background: transparent;
+        display: flex;
+        justify-content: flex-end;
+        height: 60px;
+        padding-inline: 4em;
+    }
+
+    main {
+        background: var(--red-primary);
+        background: var(--hero-linear);
+        height: 100vh;
+        margin-top: -60px;
+
+        .wrapper {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 6em;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+
+        p {
+            text-align: center;
+            color: hsl(0, 0%, 98%);
+            max-width: 50ch;
+            margin: 0 auto;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            text-align: center;
+            color: hsl(0, 0%, 98%);
+        }
+
+        h1 {
+            color: hsl(0, 0%, 98%);
+            margin-bottom: 24px;
+        }
+
+
+        .list-wrapper {
+            background-color: hsl(0, 10%, 37%);
+            margin-top: 4em;
+            padding: 2em;
+            border-radius: 24px;
+            width: 100%;
+            margin-inline: auto;
+
+            h3 {
+                text-decoration: underline;
+            }
+        }
+
+        ul {
+            list-style-type: decimal-leading-zero;
+            margin: 0 auto;
+
+            li {
+                margin-bottom: 16px;
+                font-weight: bold;
+                font-family: 'Arial';
+                color: hsl(0, 0%, 98%);
+                font-size: 16px;
+            }
+        }
+
+        .contact {
+            margin: 4em auto 0;
+
+            p {
+                margin-bottom: 1em;
+            }
+
+            a {
+                text-decoration: none;
+                padding-inline: 2.875em;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+                color: #fff;
+                background-color: #17181A;
+                font-weight: bold;
+                font-size: 20px;
+                box-shadow: -4px 4px 0 var(--red-shade-1);
+                border: none;
+                cursor: pointer;
+                transition: all 250ms cubic-bezier(0.23, 1, 0.320, 1);
+                &:hover {
+                    transform: perspective(400px) rotateY(18deg) rotateX(9deg);
+                    transition: all 250ms ease-out;
+                    box-shadow: -6px 6px 0 var(--red-shade-2);
+                }
+            }
+        }
+
+    }
+</style>
