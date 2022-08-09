@@ -14,10 +14,8 @@
     "astro-xelement": "^3.2.0"
   },
   "dependencies": {
-    "@astrojs/netlify": "^0.5.0",
     "@notionhq/client": "^2.1.1",
     "astro-imagetools": "^0.6.10",
-    "normalize.css": "^8.0.1",
     "sass": "^1.54.2"
   }
 }
