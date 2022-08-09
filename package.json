@@ -10,8 +10,11 @@
     "preview": "astro preview"
   },
   "devDependencies": {
+    "@astrojs/preact": "^0.5.2",
+    "@preact/preset-vite": "^2.3.0",
     "astro": "^1.0.0-beta.73",
-    "astro-xelement": "^3.2.0"
+    "astro-xelement": "^3.2.0",
+    "preact": "^10.10.1"
   },
   "dependencies": {
     "@notionhq/client": "^2.1.1",
