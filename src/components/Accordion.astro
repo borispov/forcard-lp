@@ -2,9 +2,9 @@
 const { title } = Astro.props;
 ---
 
-<div class="accordion">
+<div
+    class="accordion">
     <div class="title">
-        <span class="rotate">&darr;</span>
         <h4>{title}</h4>
     </div>
     <div class="accordion-text">
@@ -13,23 +13,15 @@ const { title } = Astro.props;
 </div>
 
 <style>
-    .title {
-        display: flex;
-        flex-flow: row-reverse;
-        justify-content: space-between;
-        align-items: center;
-    }
 
     .accordion {
         display: flex;
         flex-flow: column;
-        cursor: pointer;
         margin-bottom: 1em;
         padding: 12px 4em;
         box-shadow: 0 0px 9px rgba(0, 0, 0, 0.1);
         border-radius: 12px;
         background-color: beige;
-        align-content: center;
     }
 
     .accordion-active {
