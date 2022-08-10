@@ -1,5 +1,4 @@
 import { useState , useRef} from 'preact/hooks';
-import "./Accordion.css";
 
 interface AccordionProps {
 	title: string;
@@ -11,8 +10,6 @@ interface AccordionProps {
 	const [active, setActive] = useState(false);
 	const [height, setHeight] = useState('0px');
 	// TODO: Add a Chevron icon and use Rotate className
-	const rotate = 'transform duration-700 ease'
-  
 	const contentSpace = useRef<HTMLDivElement>(null);
   
 	function toggleAccordion() {

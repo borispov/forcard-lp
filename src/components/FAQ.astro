@@ -1,5 +1,5 @@
 ---
-import Accordion from './Accordion';
+import Accordion from './Accordion.astro';
 ---
 
 <section>
@@ -12,50 +12,53 @@ import Accordion from './Accordion';
 
     <div class="main">
         <Accordion title="מי צריך כרטיס?" >
-כל עצמאי ובעל עסק שרוצה לרכז את כל המידע החיוני אודות העסק שלו ופרטי ההתקשרות עמו במקום אחד.
+            <p>
+            כל עצמאי ובעל עסק שרוצה לרכז את כל המידע החיוני אודות העסק שלו ופרטי ההתקשרות עמו במקום אחד.
+            </p>
         </Accordion>
         <Accordion 
             title="מה זה נותן לי?">
-            כרטיס הביקור נותן לכם להציג את העסק בפני מגוון הלקוחות שלכם בשקיפות.
-            הכרטיס מהווה אתר לכל דבר וככזה ישפר את אחוזי ההמרה שלכם.
-            כלומר, לקוח שיכנס דרך כרטיס הביקור, יותר סביר לרכוש או להשתמש בשירותכם.
+            <p>
+                כרטיס הביקור נותן לכם להציג את העסק בפני מגוון הלקוחות שלכם בשקיפות.
+                הכרטיס מהווה אתר לכל דבר וככזה ישפר את אחוזי ההמרה שלכם.
+                כלומר, לקוח שיכנס דרך כרטיס הביקור, יותר סביר לרכוש או להשתמש בשירותכם.
+            </p>
         </Accordion>
         <Accordion title="למה התשלום חודשי?">
+            <p>
             שאלה טובה.
             בניגוד למתחרים, אנחנו מתחייבים על הביצועים הטובים ביותר של האתרים שאנחנו מייצרים, ובנוסף לזה מתחייבים לתחזק ולטפל בכל בעיה טכנית שעלולה לצוץ.
             יחד עם זאת, אנו לא גובים עמלת הקמה.
             רק תשלום חודשי, ללא התחייבות. מי שרוצה הנחה יכול לשלם שנה מראש
+
+            </p>
         </Accordion>
         <Accordion title="אפשר לשנות?">
+            
+            <p>
             קל. שלחו לנו הודעה ואנחנו משנים.
+
+            </p>
         </Accordion>
         <Accordion title="אפשר להציג גלריה?">
+            <p>
+
             ודאי. אם אתם רוצה להציג גלריה מעוצבת בצורה נכונה, זה אפשרי בהחלט.
+            </p>
         </Accordion>
         <Accordion title="למה דווקא אתם?">
+            <p>
             אנחנו יודעים לעצב את הכרטיס בהתאמה לסגנון שלכם והצורך העסק שלכם, כלומר להתאים אותו לקהל היעד ובכך לשפר אחוזי המרה.
             בנוסף, אנחנו מאוד מתגאים באיכות המוצר שאנחנו מוציאים הן ברמה הויזואלית והן ברמת התשתית.
             כל כרטיס נבנה בקוד מותאם ולא על-ידי תבניות של בוני אתרים, וככזה מבטיח ביצועים גבוהים וזמני טעינה מהירים
+
+            </p>
         </Accordion>
     </div>
 </section>
 
 
 <style>
-
-    .accordion {
-        max-width: 32em;
-        border-radius: 24px;
-        display: flex;
-        flex-flow: column;
-        justify-content: space-between;
-        padding: 8px 2em;
-        box-shadow: 0 0 16px rgba(0,0,0,0.18);
-        margin-bottom: 10px;
-        transition: all 150ms ease-in-out;
-
-        margin-bottom: 20px;
-    }
 
     h2 {
         text-align: center;
@@ -68,6 +71,23 @@ import Accordion from './Accordion';
 
     .main {
         padding: 2em;
-        box-shadow: 0 0 9px rgba(0,0,0,0.18);
+    }
+    p {
+        max-height: 0px;
+        overflow: auto;
     }
 </style>
+
+
+<script>
+    const toggleElements = document.querySelectorAll('.accordion');
+
+    toggleElements.forEach(el => {
+        el.addEventListener('click', function() {
+            toggleElements.forEach(el => el.classList.remove('accordion-active'));
+            this.classList.toggle('accordion-active');
+            const p = this.querySelector('p')
+            p.style.maxHeight = `${p.scrollHeight * 2}px`
+        });
+    });
+</script>
