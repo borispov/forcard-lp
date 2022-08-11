@@ -7,11 +7,14 @@
     <nav>
         <ul>
             <li>
-                <a href="#pricing">מחירון</a>
+                <a class="animate-hover" href="#pricing">מחירון</a>
             </li>
             <li>
-                <a href="#contact">צור קשר</a>
+                <a class="animate-hover" href="#contact">צור קשר</a>
+             <li>
+                <a class="animate-hover" href="/blog">בלוג</a>
             </li>
+            
         </ul>
     </nav>
     <img src="/img/logo.svg" alt="forcard logo" aria-role="logo">
@@ -19,6 +22,10 @@
 
 
 <style lang="scss">
+
+    .burger {
+      cursor: pointer;
+    }
     
     .bar {
         width: 24px;
@@ -53,9 +60,11 @@
         top: 100%;
         left: 0;
         opacity: 0;
+        z-index: -1;
         transition: all 450ms ease-in-out;
         &.nav-open {
             opacity: 1;
+            z-index: 1;
             background: #000;
         }
     }
@@ -73,15 +82,16 @@
         font-size: 18px;
         margin-bottom: 1em;
         margin-inline: 4em;
+        padding-left: 10em;
     }
 
     nav li a {
+        position: relative;
         text-decoration: none;
         color: var(--color-off-white);
-        padding-left: 10em;
         transition: opacity 150ms ease-in-out;
         &:hover {
-            color: #000;
+            color: #fff;
         }
     }
 
@@ -95,6 +105,7 @@
         nav {
             position: static;
             opacity: 1;
+            z-index: 1;
             transition: none;
             background-color: transparent;
         }
@@ -105,10 +116,7 @@
 
         nav ul li {
             margin: 0;
-
-            a { 
-                padding-left: 4em;
-            }
+            padding-left: 4em;
         }
 
     }
