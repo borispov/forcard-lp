@@ -1,3 +1,12 @@
+---
+const { blogHeader } = Astro.props;
+
+const backgroundColor = blogHeader ? 'white' : 'transparent';
+const foregroundColor = blogHeader ? '#111' : 'var(--color-off-white)'
+
+const burgerColor = blogHeader ? 'black' : 'var(--color-off-white)';
+
+---
 <header>
     <div class="burger">
         <div class="bar"></div>
@@ -13,22 +22,29 @@
                 <a class="animate-hover" href="#contact">צור קשר</a>
             </li>
             
+            <li>
+                <a class="animate-hover" href="/blog">בלוג</a>
+            </li>
+
         </ul>
     </nav>
     <img src="/img/logo.svg" alt="forcard logo" aria-role="logo">
 </header>
 
 
-<style lang="scss">
+<style lang="scss" define:vars={{ foregroundColor, backgroundColor, burgerColor }}>
 
     .burger {
       cursor: pointer;
+        z-index: 1;
     }
     
     .bar {
         width: 24px;
         height: 3px;
-        background-color: var(--color-off-white);
+        // background-color: var(--color-off-white);
+        background-color: var(--burgerColor);
+        z-index: 1;
         margin: 6px 0;
 
         &:nth-child(2) {
@@ -39,9 +55,10 @@
     .menu-open { background: #000;}
 
     header {
-        height: 60px;
+        height: 66px;
         position: fixed;
         background-color: transparent;
+        background-color: var(--backgroundColor);
         display: flex;
         flex-flow: row;
         justify-content: space-between;
@@ -87,9 +104,11 @@
         position: relative;
         text-decoration: none;
         color: var(--color-off-white);
+        color: var(--foregroundColor);
         transition: opacity 150ms ease-in-out;
         &:hover {
             color: #fff;
+            color: var(--foregroundColor);
         }
     }
 
@@ -106,6 +125,7 @@
             z-index: 1;
             transition: none;
             background-color: transparent;
+            background-color: var(--backgroundColor);
         }
         nav ul {
             display: flex;

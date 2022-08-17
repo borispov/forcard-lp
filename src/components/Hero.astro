@@ -2,13 +2,15 @@
     <div class="wrapper">
         <div class="content">
             <h1>
-              כמו אתר
+            כרטיס ביקור דיגיטלי
               <br>
-              רק קטן ומגניב
+              <span class="re"></span>
+              
             </h1>
             <p>
-                שיחה קצרה של 15 דקות,
+                כרטיס ביקור דיגיטלי בהתאמה אישית, כל המידע במקום אחד.
                 <br>
+                שיחה קצרה של 15 דקות,
                 כמה ימים ויש לכם כרטיס ביקור דיגיטלי.
             </p>
             <a href="#contact">
@@ -24,6 +26,21 @@
 </main>
 
 <style lang="scss">
+
+    .rec {
+        position: relative;
+        width: 30px;
+        height: 30px;
+    }
+    .rec:after {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        height: 40px;
+        background-color: #fff;
+    }
 
 
     main {
@@ -86,9 +103,11 @@
     }
 
     h1 {
+        line-height: 1.1;
         font-family: "Tahoma";
         margin-bottom: 0;
-		font-size: clamp(2.44rem, 2.28vw + 1.85rem, 3.75rem); 
+        font-size: var(--font-size-xl);
+		// font-size: clamp(2.44rem, 2.28vw + 1.85rem, 3.75rem); 
     }
 
     p {

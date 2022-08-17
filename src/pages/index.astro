@@ -1,17 +1,14 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import HomePageLayout from "../layouts/HomePageLayout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import Testimonial from "../components/Testimonial.astro";
 import Features from "../components/Features.astro";
 import Pricing from "../components/Pricing.astro";
 import FAQ from '../components/FAQ.astro';
+import Process from '../components/Process.astro';
 
 import Footer from "../components/Footer.astro";
-
-// @ts-ignore
-import XElement from 'astro-xelement';
-const { Form } = XElement;
 
 // form logic
 const handleFormSubmit = async (e: SubmitEvent) => {
@@ -32,11 +29,20 @@ const handleFormSubmit = async (e: SubmitEvent) => {
 
 ---
 
-<Layout title="Focard - כרטיס ביקור דיגיטלי">
-	<Header />
+<HomePageLayout title="Focard - כרטיס ביקור דיגיטלי">
+	<Header blogHeader={false} />
 	<Hero />
 	<Testimonial />
 	<Features />
+
+	<Process />
+	<!-- <section class="process container">
+		<h1>תהליך קצר</h1>
+		<div class="wrap">
+			
+		</div>
+	</section> -->
+
 	<Pricing />
 
 	<FAQ />
@@ -71,7 +77,7 @@ const handleFormSubmit = async (e: SubmitEvent) => {
 	</section>
 
 	<Footer />
-</Layout>
+</HomePageLayout>
 
 <style>
 	canvas {

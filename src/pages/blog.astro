@@ -1,0 +1,82 @@
+---
+import BlogHead from '../components/BlogHead.astro';
+import Header from '../components/Header.astro';
+import BlogPostPreview from '../components/BlogPostPreview.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Forcard - מאגר מידע אודות כרטיס ביקור דיגיטלי'
+const description = 'בואו ללמוד מה זה כרטיס ביקור דיגיטלי ואיך זה יעזור לעסק שלך'
+
+// Use Astro.glob to fetch all post with associated frontmatter
+const unsortedPosts = await Astro.glob('./blog/*.md');
+const posts = unsortedPosts.sort(function (a, b) {
+	return (
+		new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf()
+	);
+});
+---
+
+<html lang="he-il">
+
+  <BlogHead
+    title="Forcard - מידע"
+    description="מאגר מידע ומאמרים אודות כרטיסים ביקור דיגיטליים"
+  />
+
+  <body>
+    <Header isBlog={true} />
+    <div class="upper-bg">
+        <section class="blog-hero container">
+          <h1>
+            הבלוג של Forcard. כל מה שאתם צריכים לדעת על כרטיסי ביקור דיגיטליים
+          </h1>
+        </section>
+    </div>
+
+    <div class="container">
+      <main>
+				<section aria-label="בלוג רשימת מאמרים">
+					{posts.map(({ url, frontmatter }) => (
+						<BlogPostPreview
+							title={frontmatter.title}
+							description={frontmatter.description}
+							url={url}
+						/>
+					))}
+				</section>
+      </main>
+    </div>
+    <Footer />
+  </body>
+</html>
+
+
+<style lang="scss">
+
+  .upper-bg {
+    margin-top: -60px;
+    z-index: -1;
+    background: var(--hero-linear);
+    opacity: 0.9;
+    padding: 4em 0;
+  }
+
+  main {
+    max-width: 60em;
+    margin-inline: auto;
+  }
+
+  .blog-hero {
+    // display: flex;
+    color: white;
+    // flex-flow: column;
+
+    h1 {
+      font-size: 30px;
+      max-width: 660px;
+      text-align: center;
+    }
+
+  }
+
+</style>

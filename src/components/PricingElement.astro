@@ -1,0 +1,162 @@
+---
+interface Props {
+    title: string;
+    price: string;
+    features: string[];
+    badgeTitle: string | undefined;
+    elementOrder: number;
+}
+
+const {
+    title,
+    price,
+    features,
+    badgeTitle,
+    elementOrder
+} = Astro.props;
+
+const pricingElementClasses = `pricing pricing-${elementOrder}`;
+---
+<div class={pricingElementClasses}>
+    { badgeTitle &&
+        <span class="badge">{badgeTitle}</span>
+    }
+    <h2>{title}</h2>
+    <div class="price">
+          <span class="price-num">{price}₪</span>
+        /שנה
+    </div>
+    <ul>
+        {
+            features.map(feat =>
+                <li>
+                    <span>&#10003;</span>
+                    {feat}
+                </li>
+            )
+        }
+    </ul>
+
+    <a href="https://wa.me?+972508564794">
+        התחל
+    </a>
+
+</div>
+
+<style lang="scss">
+
+    .pricing {
+        padding: 10px 2em;
+        color: var(--color-text-black);
+        display: flex;
+        flex-flow: column;
+        align-items: flex-start;
+        border-radius: 16px;
+        box-shadow: -6px 6px 0 #652113;
+        border: 1px solid #000;
+    }
+
+    .pricing-1 {
+        background-color: #F3E1DE;
+    }
+
+    .pricing-2 {
+        background: linear-gradient(99.43deg, #D67765 2.37%, #C54126 100%);
+        color: var(--color-text-white);
+
+        a {
+            margin-inline: auto;
+            background: var(--color-text-white);
+            border-bottom: none;
+            font-weight: 700;
+            padding: 5px 30px;
+            border-radius: 4px;
+            margin-top: 15px;
+            color: var(--color-text-black);
+        }
+
+        .badge {
+            background-color: #FCCD86;
+            color: white;
+            margin-top: 8px;
+            padding: 0.5em 1em;
+            border-radius: 12px;
+            color: var(--color-text-black);
+            font-size: 14px;
+            font-weight: bold;
+        }
+        border: none;
+
+        @media screen and (min-width: 768px) {
+            // flex-flow: row;
+            margin-top: -30px;
+            margin-bottom: -30px;
+        }
+
+    }
+
+    .pricing-3 {
+      .badge {
+        background-color: var(--red-shade-4);
+        color: #333;
+        margin-top: 8px;
+        padding: 0.325em 0.825em;
+        border-radius: 24px;
+        font-size: 12px;
+        /* font-weight: bold; */
+      }
+
+    }
+
+    .price {
+        margin-bottom: 16px;
+        font-weight: 400;
+        font-size: 30px;
+        &-num {
+            font-weight: bold;
+            font-size: 50px;
+        }
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    ul li {
+        font-size: 18px;
+        margin-bottom: 16px;
+        line-height: 24px;
+    }
+
+    ul li span {
+        padding-left: 10px;
+    }
+
+    .badge {
+        /* background-color: #FCCD86;
+        color: white;
+        padding: 0.5em 1em;
+        font-size: 14px; */
+    }
+
+    a {
+        margin-inline: auto;
+        background: black;
+        border-bottom: none;
+        font-weight: 700;
+        padding: 5px 30px;
+        border-radius: 4px;
+        margin-top: 15px;
+        color: var(--color-text-white);
+        box-shadow: -3px 3px 0 var(--red-primary);
+        transition: all 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        &:hover {
+        transition: all 100ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: none;
+
+        }
+    }
+
+</style>

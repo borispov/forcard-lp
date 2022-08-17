@@ -1,0 +1,26 @@
+---
+const { category, author, timeToRead, title } = Astro.props;
+---
+<div class="article-heading">
+    <div class="container">
+
+        <ul class="breadcrums">
+        <li>
+            <a href="/blog/">ראשי /</a>
+        </li>
+        <li>
+            <a href={`/blog/${category}`}>{category}</a>
+        </li>
+        </ul>
+
+        <h1>
+        ${title}
+        </h1>
+
+        <span class="author-and-time">
+        <p>{author}</p>
+        <p>{timeToRead}</p>
+        </span>
+
+    </div>
+</div>

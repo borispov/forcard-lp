@@ -1,0 +1,38 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	url: string;
+}
+
+const { title, description, url } = Astro.props as Props;
+---
+
+<article class="post-preview">
+	<div>
+		<a href={url}><h1 class="title">{title}</h1></a>
+	</div>
+	<p>{description}</p>
+	<a href={url}>קרא עוד</a>
+</article>
+
+<style>
+	.post-preview {
+		padding-top: 1.5rem;
+		padding-bottom: 2rem;
+		margin-bottom: 2rem;
+		border-bottom: 2px solid var(--red-shade-4);
+	}
+
+	.title {
+		margin: 0;
+		line-height: 1.15;
+	}
+
+	.title {
+		font-size: 22px;
+		font-weight: 700;
+		color: var(--red-primary);
+		max-width: 660px;
+	}
+</style>

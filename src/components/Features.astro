@@ -1,7 +1,14 @@
 ---
 ---
 <section>
-    <div class="feature feature-1">
+    <h1 class="heading">
+        מה זה 
+        <span class="heading-red">
+        כרטיס 
+        ביקור דיגיטלי
+        </span>
+    </h1>
+    <div class="feature">
         <div class="content">
             <h1>אתר לכל דבר ועניין</h1>
             <p>
@@ -17,79 +24,184 @@
             </ul>
         </div>
         <div class="image">
-            <img src="/img/feature-1.png" alt="" width="380px">
+            <img 
+                src="/img/feature-1.png" alt="גולשת עם אפשרויות דיגיטל">
         </div>
     </div>
 
-    <div class="feature feature-2">
+    <div class="feature">
         <div class="image">
             <div class="overlay"></div>
-            <img src="/img/feature-2.jpg" alt="">
+            <img src="/img/feature-3.png" alt="איור של אמנים מציירים אל תוך מוקאפ של טלפון">
         </div>
 
         <div class="content">
-            <h2>עיצוב מותאם אישית</h2>
+            <h2>לקוחות ימצאו אתכם</h2>
             <p>
-                אנחנו אחראים לספק לכם עיצוב ייחודי, בהתאם למידע שנקלוט בתהליך ההיכרות עמכם. תעבירו לנו כל דבר שיעזור לנו להכיר אתכם טוב יותר.
+                מה שווה כרטיס ביקור דיגיטלי אם אף-אחד לא יכול למצוא אותו, נכון?
             </p>
-            <h2>תוכן</h2>
             <p>
-                צלמים? תראו פורטפוליו עבודות
-עורכי דין? תארו את שירותכם ותהליך העבודה עמכם.
-מאמני כושר? תראו תוצאות מעודדות ומי קהל היעד שלכם.
+                בזכות הכרטיס הדיגיטלי שלנו, לקוחות יוכלו למצוא אתכם בגוגל.
+                אנחנו מחברים אוטומטית כל כרטיס ביקור דיגיטלי למאגר של גוגל.
+                נוסף לכך, אנחנו בונים לכם את הדף בצורה כזו שמתאימה למילות החיפוש הנכונות לעסק שלכם.
+            </p>
+            <p>
+                לבסוף, בזכות כרטיס ביקור דיגיטלי מהיר באופן יוצא דופן (אין לאף מתחרה יכולת כזו), גוגל יתעדף אתכם עוד יותר.
             </p>
         </div>
         
     </div>
 
+    <div class="feature feature-2">
+        <div class="image">
+            <div class="overlay"></div>
+            <img src="/img/feature-2.jpg" alt="תמונה של מנועי חיפוש">
+        </div>
+
+        <div class="content">
+            <h3>
+                מה מיוחד אצלנו?
+            </h3>
+            <h2>עיצוב מותאם אישית</h2>
+            <p>
+                אנחנו אחראים לספק לכם עיצוב ייחודי, בהתאם למידע שנקלוט בתהליך ההיכרות עמכם. תעבירו לנו כל דבר שיעזור לנו להכיר אתכם טוב יותר.
+            </p>
+            <h2>קוד מותאם מאפס</h2>
+            <p>
+                אין מתחרים שעושים זאת! כל כרטיס ביקור מתוכנת בקוד מותאם עם אופטימיזציה למהירות ו-SEO. משמעות הדבר הינה שבזכות כרטיס הביקור הדיגיטלי שלנו, תזכו לסיכוי רב יותר
+                להופיע בתוצאות חיפוש של גוגל.
+            </p>
+        </div>
+
+    </div>
+    <div class="feature feature-4">
+        <div class="image">
+            <div class="overlay"></div>
+            <img src="/img/feature-4.png" alt="תמונה של מנועי חיפוש">
+        </div>
+
+        <div class="content">
+            <h2>תוכן לעסק</h2>
+            <p>
+                אנחנו מאפשרים ומעודדים עסקים להציג את התוכן הרלוונטי לתחום העיסוק שלהם.
+                <br>
+                צלמים? תראו פורטפוליו עבודות
+עורכי דין? תארו את שירותכם ותהליך העבודה עמכם.
+מאמני כושר? תראו תוצאות מעודדות ומי קהל היעד שלכם.
+            </p>
+            <h2>מחיר הגיוני</h2>
+            <p>
+                כרטיס הביקור שלנו לא הכי זול בשוק. תוכלו למצוא פתרון זול יותר, אך תצטרכו להתפשר על איכות העיצוב, ביצועי האתר עליו יושב הכרטיס הביקור הדיגיטלי.
+            </p>
+            <p>
+                איתנו, אתם מקבלים מוצר מהיר, איכותי ובטוח.
+                העלות אל מול התמורה היא המשתלמת ביותר בשוק.
+            </p>
+            <p>
+                300₪ שנתי בחבילת הבסיס. קל.
+            </p>
+        </div>
+        
+    </div>
+        
+
 </section>
 
 
 <style lang="scss">
+    .heading {
+        padding-top: 2em;
+        text-align: center;
+        font-size: 50px;
+        @media screen and (min-width:768px) {
+            font-size: 65px;
+        }
+
+    }
+    .heading-red {
+        background: var(--hero-linear);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
 
     .feature {
         display: flex;
         flex-flow: column;
         padding: 1em 2em;
         text-align: justify;
+        padding-bottom: 4em;
 
-        @media screen and (min-width:768px) {
-            flex-flow: row;
-            padding: 3em 10em;
-            text-align: right;
-            justify-content: center;
-            // margin-left: auto;
-            // margin-right: auto;
+        p {
+            max-width: 35ch;
         }
-    }
 
-    .feature-1 {
-
-    }
-
-    .feature-2 {
-        color: #fff;
-        background: linear-gradient(107.97deg, #CC5C44 0%, #DE9284 100%);
-        gap: 30px;
+        .content {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
 
         .image {
+            align-self: center;
             border-radius: 16px;
             box-shadow: -12px 12px 0 #45170D;
+            box-shadow: 0 0px 9px #45170D11;
             position: relative;
-            .overlay {
-                left: 0;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                background-color: hsla(0, 56%, 52%, 0.2);
-            }
+            // max-height: 420px;
+            max-width: 420px;
 
             img {
                 border-radius: 16px;
                 width: 100%;
                 height: 100%;
+                // max-height: 420px;
             }
+        }
+
+        @media screen and (min-width:768px) {
+            flex-flow: row;
+            text-align: right;
+            justify-content: center;
+            gap: 60px;
+            // margin-left: auto;
+            // margin-right: auto;
+        }
+    }
+
+    .feature-4 {
+        @media screen and (max-width:768px) {
+            margin-top: -50px;
+        }
+    }
+
+    .feature-2 {
+        color: var(--color-text-white);
+        background: linear-gradient(107.97deg, #CC5C44 0%, #DE9284 100%);
+
+        h3 {
+            color: var(--red-shade-4);
+            margin-bottom: -16px;
+            font-size: 20px;
+        }
+
+        .image {
+            margin-top: -50px;
+            border-radius: 16px;
+            box-shadow: -12px 12px 0 #45170D;
+            position: relative;
+            max-height: 420px;
+            width: 420px;
+
+            img {
+                border-radius: 16px;
+                width: 100%;
+                height: 100%;
+                max-height: 420px;
+                width: 420px;
+            }
+        }
+
+        @media screen and (min-width:768px) {
+            flex-direction: row-reverse;
         }
     }
 
@@ -99,9 +211,9 @@
 
     p {
         max-width: 55ch;
-        font-size: 18px;
-        line-height: 30px;
-
+        font-size: 20px;
+        line-height: 1.5;
+        font-weight: 300;
     }
 
     ul {
@@ -111,6 +223,12 @@
         li {
           font-size: 18px;
         }
+    }
+
+    h2 {
+        font-size: 40px;
+        text-align: right;
+        line-height: 1.15;
     }
 
 </style>

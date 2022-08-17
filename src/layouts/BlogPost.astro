@@ -1,0 +1,52 @@
+---
+import BlogHead from "../components/BlogHead.astro";
+import BlogPostPreview from "../components/BlogPostPreview.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro"
+import Form from '../components/Form.astro'
+import Post from "../components/Post/Post.astro";
+
+export interface Props {
+	headings: string[];
+	content: {
+		title: string;
+		description: string;
+		publishDate: string;
+		headings: string[];
+		category: string;
+		tags: string[];
+		heroImage?: {
+			src: string;
+			alt: string;
+		};
+	};
+}
+
+const {
+	headings,
+	content: { title, description, publishDate, heroImage, category },
+} = Astro.props as Props;
+
+export async function getStaticPaths({ paginate }) {
+	const allPosts = Astro.glob('../blog/*.md')
+		.then(data => data
+			.sort((a,b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf()))
+	
+	return paginate(allPosts, { pageSize: 3 })
+}
+
+---
+
+<html dir="rtl">
+	<head>
+		<BlogHead title={title} description={description} />
+	</head>
+
+	<body>
+		<Header blogHeader={true} />
+		<Post {headings} {title} {description} {category}>
+			<slot/>
+		</Post>
+		<Footer />
+	</body>
+</html>

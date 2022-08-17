@@ -1,0 +1,188 @@
+---
+
+interface Props {
+  image?: string;
+  author: string;
+  title: string;
+  category: string;
+  timeToRead?: string;
+  headings: string[] | any;
+}
+
+const { title, category, author, timeToRead, headings } = Astro.props as Props;
+console.log(headings)
+---
+
+
+<main>
+  <div class="article-heading">
+    <div class="container">
+
+      <ul class="breadcrums">
+        <li>
+          <a href="/blog/">ראשי / </a>
+        </li>
+        <li>
+          <a href={`/blog/${category}`}>{category}</a>
+        </li>
+      </ul>
+
+      <h1>
+        {title}
+      </h1>
+
+      <span class="author-and-time">
+        <p>{author}</p>
+        <p>{timeToRead}</p>
+      </span>
+
+    </div>
+  </div>
+
+  <div>
+
+    <aside aria-label="תוכן העניינים">
+      <div class="sidebar-container">
+        <div class="sidebar-container">
+          <h2>תוכן העניינים</h2>
+          <div class="toc">
+            <ul>
+              {
+                headings?.map(title => {
+                  return (
+                    <li>
+                      <a href={`#${title}`}>
+                        {title}
+                      </a>
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <article class="container blog-post">
+      <slot />
+
+      <span class="small-text">
+        תודה רבה על הקריאה, מקווים שמצאתם ערך במאמר זה.
+      </span>
+      <ul class="breadcrums">
+          <a href="/blog/">ראשי / </a>
+          <a href={`/blog/${category}`}>&nbsp{category}</a>
+      </ul>
+
+    </article>
+
+  </div>
+
+  
+
+</main>
+
+
+<style lang="scss">
+
+  main {
+    padding-bottom: 6em;
+  }
+
+  .article-heading {
+    background: var(--hero-linear);
+    color: #fff;
+  }
+
+  .breadcrums {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    padding-top: 1em;
+
+    @media screen and (min-width: 560px){
+      padding-top: 2em;
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+
+  }
+
+  h1 {
+    line-height: 1.25;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 25px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    @media screen and (min-width: 560px){
+      font-size: 30px;
+    }
+    @media screen and (min-width: 768px) {
+      font-size: 35px;
+      margin-top: 40px;
+      margin-bottom: 40px;
+      max-width: 25em;
+    }
+
+    @media screen and (min-width: 960px){
+      margin-top: 45px;
+      margin-bottom: 45px;
+      font-size: 40px;
+      max-width: 35em;
+    }
+
+    @media screen and (min-width: 1140px){
+      margin-top: 50px;
+      margin-bottom: 50px;
+      font-size: 50px;
+      max-width: 680px;
+    }
+  }
+
+  .author-and-time {
+    display: flex;
+    flex-wrap: wrap;
+    white-space: nowrap;
+  }
+
+  .author-and-time > * {
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
+  aside {
+    display: none;
+    width: 18em;
+
+    @media screen and (min-width: var(--large-breakpoint)) {
+      display: block;
+    }
+
+  }
+
+  .sidebar-container {
+    height: calc(100vh - 6em);
+    position: sticky;
+    overflow: auto;
+    top: 2em;
+  }
+
+  .toc ul {
+    padding-right: 1em;
+  }
+
+  .toc ul a {
+  }
+
+  .small-text {
+    font-size: 14px;
+  }
+
+</style>

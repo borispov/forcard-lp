@@ -1,0 +1,132 @@
+---
+const processes = [
+    {
+        step: 1,
+        title: "אפיון",
+        description: "נכיר אתכם, את העסק,העדפות עיצוב וכד׳",
+        time: "15 דקות"
+    },
+    {
+        step: 2,
+        title: "העברת מדיה",
+        description: "נבקש להעביר לנו לוגו, תמונות, תוכן. נוכל לעזור לספק תמונות/לוגו וקופי",
+        time: "מיידי"
+    },
+    {
+        step: 3,
+        title: "עיצוב ופיתוח",
+        description: "מכינים לכם כרטיס ביקור דיגיטלי מותאם אישית, מקצועי ואיכותי.",
+        time: "כמה ימי עסקים"
+    },
+]
+---
+<section>
+    <div class="container">
+		<h1 class="animate-hover">תהליך 
+            <span class="heading-red">
+            קצר
+            </span>
+        </h1>
+        <div class="steps">
+            {
+                processes.map(p => (
+                    <div class="step-wrap">
+                        <div class="title">
+                            <span>0{p.step}</span>
+                            <h1>{p.title}</h1>
+                        </div>
+                        <p>{p.description}</p>
+                        <span class="time">
+                            זמן משוער: {p.time}
+                        </span>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+
+    section {
+        background: var(--dark-bg);
+        padding-top: 4em;
+        padding-bottom: 4em;
+    }
+
+    .steps {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        gap: 90px;
+
+        @media screen and (min-width: 560px) {
+            align-items: baseline;
+            padding-top: 60px;
+            text-align: right;
+            justify-content: center;
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+        }
+    }
+
+    .step-wrap {
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+            margin: 0;
+        }
+
+        p {
+            margin: 0;
+            max-width: 25ch;
+            color: var(--color-off-white);
+        }
+
+        .time {
+            color: var(--red-plain);
+            opacity: 0.71;
+        }
+
+    }
+
+    h1 {
+        display: inline;
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .title {
+        display: flex;
+        align-items: baseline;
+        position: relative;
+        h1 {
+            font-size: 30px;
+        }
+        @media screen and (max-width: 560px) {
+            justify-content: center;
+        }
+    }
+    
+    .title span {
+        position: absolute;
+        bottom: -50%;
+        font-size: 5.35rem;
+        color: transparent;
+        font-family: sans-serif;
+        mix-blend-mode: hard-light;
+        // margin-right: -20px;
+        -webkit-text-stroke: 9px var(--red-shade-2);
+        opacity: 0.25;
+        right: -35px;
+    }
+
+
+</style>
