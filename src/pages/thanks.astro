@@ -1,5 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import HomePageLayout from "../layouts/HomePageLayout.astro";
 
 const message = "הטופס נשלח בהצלחה. אנו נחזור אליכם בהקדם. בדרך-כלל תוך 48 שעות"
 const instructions = "במידה והינכם מעוניינים להקים מיקרו-דף-נחיתה (כרטיס דיגיטלי) אנא, דאגו לאסוף את כל החומרים כדי שתוכלו להעביר לנו."
@@ -15,7 +15,7 @@ const materials = [
 ]
 ---
 
-<Layout title="תודה רבה">
+<HomePageLayout title="תודה רבה">
     <header>
         <!-- <img src="/img/logo.svg" alt="forcard logo" aria-role="logo"> -->
     </header>
@@ -41,7 +41,7 @@ const materials = [
             </div>
         </div>
     </main>
-</Layout>
+</HomePageLayout>
 
 <style lang="scss">
     header {
