@@ -2,6 +2,7 @@
 import BlogHead from '../components/BlogHead.astro';
 import Header from '../components/Header.astro';
 import BlogPostPreview from '../components/BlogPostPreview.astro';
+import Form from '../components/Form.astro';
 import Footer from '../components/Footer.astro';
 
 const title = 'Forcard - מאגר מידע אודות כרטיס ביקור דיגיטלי'
@@ -28,7 +29,8 @@ const posts = unsortedPosts.sort(function (a, b) {
     <div class="upper-bg">
         <section class="blog-hero container">
           <h1>
-            הבלוג של Forcard. כל מה שאתם צריכים לדעת על כרטיסי ביקור דיגיטליים
+            הבלוג של Forcard
+            <br> כל מה שאתם צריכים לדעת על כרטיסי ביקור דיגיטליים
           </h1>
         </section>
     </div>
@@ -46,6 +48,7 @@ const posts = unsortedPosts.sort(function (a, b) {
 				</section>
       </main>
     </div>
+    <Form />
     <Footer />
   </body>
 </html>
@@ -54,7 +57,7 @@ const posts = unsortedPosts.sort(function (a, b) {
 <style lang="scss">
 
   .upper-bg {
-    margin-top: -60px;
+    margin-top: -66px;
     z-index: -1;
     background: var(--hero-linear);
     opacity: 0.9;
@@ -64,12 +67,13 @@ const posts = unsortedPosts.sort(function (a, b) {
   main {
     max-width: 60em;
     margin-inline: auto;
+    min-height: 40vh;
   }
 
   .blog-hero {
-    // display: flex;
     color: white;
-    // flex-flow: column;
+    max-width: 660px;
+    margin: 0 auto;
 
     h1 {
       font-size: 30px;
