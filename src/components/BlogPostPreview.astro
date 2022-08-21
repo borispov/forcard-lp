@@ -13,7 +13,7 @@ const { title, description, url } = Astro.props as Props;
 		<a href={url}><h1 class="title">{title}</h1></a>
 	</div>
 	<p>{description}</p>
-	<a href={url}>קרא עוד</a>
+	<a class="animate-hover" href={url}>קרא עוד</a>
 </article>
 
 <style>
@@ -35,7 +35,7 @@ const { title, description, url } = Astro.props as Props;
 	.title {
 		font-size: 22px;
 		font-weight: 700;
-		color: var(--red-primary);
+		color: var(--dark-txt);
 		max-width: 660px;
 	}
 </style>
