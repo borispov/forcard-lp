@@ -4,6 +4,7 @@ import preact from '@astrojs/preact';
 import vitePreact from '@preact/preset-vite';
 
 export default defineConfig({
+  base: "/",
     integrations: [
         preact({ compat: true}),
     ],
