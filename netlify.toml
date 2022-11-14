@@ -1,0 +1,6 @@
+[[redirects]]
+from = "/liron-photography"
+to = "https://curious-biscochitos-45b2c8.netlify.app"
+status = 200
+force = true
+heaers = {X-From = "Netlify"}
